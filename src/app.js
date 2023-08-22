@@ -1,84 +1,53 @@
 import { getWeatherData } from "./apis";
+import { displayWeatherData  } from "./dom";
 import "./style.css"
 
 
-const search = document.querySelector(".search");
-search.addEventListener("click", () => {
-  console.log("fetching...")
-  fetchAndDisplayWeatherForecast()
+function handleSearch() {
+  const cityInput = document.querySelector("input");
+  const city = cityInput.value.trim();
 
+  if (!city) return;
+
+  fetchAndDisplayWeatherForecast(city);
+  cityInput.value = "";
+}
+
+
+const searchButton = document.querySelector(".search");
+searchButton.addEventListener("click", async () => {
+  try {
+    handleSearch();
+  }catch (error) {
+    console.log(`Error occured: ${error}`);
+  }
 });
 
-async function fetchAndDisplayWeatherForecast () {
-  
-  const city = document.querySelector("input");
 
-  if (!city.value) return;
-
-  try {
-    const weatherData = await getWeatherData(city.value);
-
-    handleCurrentWeatherData(weatherData);
-    handleForecastWeatherData(weatherData);
-
-    city.value = "";
-
-  } catch (error) {
-    throw error
+const cityInput = document.querySelector("input");
+cityInput.addEventListener("keydown", (event) => {
+  try{
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  }catch (error) {
+    console.log(`Error occured: ${error}`);
   }
-
-}
-
-  
-  // Function to handle current weather data
-function handleCurrentWeatherData(data) {
-    console.log(data)
-    console.log('Location:', data.location.name);
-    console.log('Temperature:', data.current.temp_c);
-    console.log('Conditions:', data.current.condition.text);
-
-
-}
-
-
-//Function to handle 3 days forecast
- function handleForecastWeatherData (data) {
-    console.log(data)
-
-    const forecastDays = data.forecast.forecastday;
-
-  console.log('Weather Forecast:');
-
-  forecastDays.forEach((forecastDay) => {
-    const date = forecastDay.date;
-    const condition = forecastDay.day.condition.text;
-    const maxTemp = forecastDay.day.maxtemp_c;
-    const minTemp = forecastDay.day.mintemp_c;
-
-    console.log('Date:', date);
-    console.log('Condition:', condition);
-    console.log('Max Temperature:', maxTemp);
-    console.log('Min Temperature:', minTemp);
-    console.log('----------------');
   });
 
-  const alerts = data.alerts;
-  
-  if (alerts && alerts.length > 0) {
-    console.log('Weather Alerts:');
-    
-    alerts.forEach((alert) => {
-      const alertTitle = alert.title;
-      const alertDescription = alert.description;
-      
-      console.log('Title:', alertTitle);
-      console.log('Description:', alertDescription);
-      console.log('----------------');
-    });
-  } else {
-    console.log('No weather alerts found.');
-  }
-  
- }
 
+async function fetchAndDisplayWeatherForecast (city) {
+  
+  try {
+    const weatherData = await getWeatherData(city);
+
+    displayWeatherData(weatherData)
+
+  } catch (error) {
+    console.error('Error occurred:', error);
+  }
+
+}
+
+fetchAndDisplayWeatherForecast('Addis Ababa');
 

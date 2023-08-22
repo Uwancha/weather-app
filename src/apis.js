@@ -1,24 +1,23 @@
+
 async function getWeatherData(location) {
     
-    const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=be0f50b29f0a499ca4995922232008&q=${location}&days=3&alerts=yes`;
+  const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=be0f50b29f0a499ca4995922232008&q=${location}&days=7&alerts=yes`;
     
-  
-    try {
+  try {
      
-      const response = await fetch(apiUrl);
+    const response = await fetch(apiUrl);
       
       
-      if (!response.ok) {
-        throw new Error('API request failed');
-      }
+    if (!response.ok) {
+      throw new Error(`API request failed: ${response.statusText}`);
+    }
   
       
-      const data = await response.json();
+    const data = await response.json();
   
       
-      return data;
+    return data;
     } catch (error) {
-      
       throw error;
     }
   }

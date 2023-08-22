@@ -6,13 +6,57 @@
     <title>Weather App</title>
 <script defer src="main.bundle.js"></script></head>
 <body>
-    <div id="search-box">
-        <div>
-            <input type="text" placeholder="Search location">
+    <main>
+
+        <div id="search-box">
+            <div>
+                <input type="text" placeholder="Search location">
+            </div>
+            <div class="search">
+                <span>Search</span>
+            </div>
         </div>
-        <div class="search">
-            <span>Search</span>
-        </div>
-    </div>
+
+        <section class="current-weather">
+            
+            <article class="current-data">
+                <h1 id="current-condition"></h1>
+                <h3 id="location"></h3>
+                <div id="date"></div>
+                <div id="time"></div>
+                <div id="temr">
+                    <h2 id="temperature-cel"></h2>
+                    <p id="temperature-fahr"></p>
+                </div>
+                <img src="" alt="condtion-icon" id="condition-icon">
+            </article>
+
+            <article class="current-forecast">
+
+                <div>
+                    <h2>Feels Like</h2>
+                    <p id="feels-like"></p>
+                </div>
+                <div>
+                    <h2>Humidity</h2>
+                    <p id="humidity"></p>
+                </div>
+                <div>
+                    <h2>Chance of rain</h2>
+                    <p id="chance-of-rain"></p>
+                </div>
+                <div>
+                    <h2>Wind speed</h2>
+                    <p id="wind-speed"></p>
+                </div>
+               
+            </article>
+            
+        </section>
+
+        <section id="forecast-container">
+           
+        </section>
+    </main>
 </body>
 </html>
