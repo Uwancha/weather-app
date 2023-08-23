@@ -10,7 +10,7 @@ The purpose of this project is to demonstrate the concepts of asynchronous code,
 
 ## Demo
 
-You can try out the app by visiting the following live demo link: [ToDo List App Demo](https://uwancha.github.io/weather-app/)
+You can try out the app by visiting the following live demo link: [Live Demo](https://uwancha.github.io/weather-app/)
 
 ## Features
 
