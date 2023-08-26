@@ -1,5 +1,5 @@
 import { getWeatherData } from "./apis";
-import { displayWeatherData  } from "./dom";
+import {displayErrorMessage, displayWeatherData  } from "./dom";
 import "./style.css"
 
 
@@ -9,31 +9,27 @@ function handleSearch() {
 
   if (!city) return;
 
+  const errorMessage = document.getElementById("error-message");
+  errorMessage.style.display = "none";
+
   fetchAndDisplayWeatherForecast(city);
+
   cityInput.value = "";
 }
 
 
 const searchButton = document.querySelector(".search");
-searchButton.addEventListener("click", async () => {
-  try {
-    handleSearch();
-  }catch (error) {
-    console.log(`Error occured: ${error}`);
-  }
-});
+searchButton.addEventListener("click",handleSearch);
 
 
 const cityInput = document.querySelector("input");
 cityInput.addEventListener("keydown", (event) => {
-  try{
-    if (event.key === "Enter") {
-      handleSearch();
-    }
-  }catch (error) {
-    console.log(`Error occured: ${error}`);
+
+  if (event.key === "Enter") {
+    handleSearch();
   }
-  });
+  
+} );
 
 
 async function fetchAndDisplayWeatherForecast (city) {
@@ -45,6 +41,8 @@ async function fetchAndDisplayWeatherForecast (city) {
 
   } catch (error) {
     console.error('Error occurred:', error);
+
+    displayErrorMessage();
   }
 
 }

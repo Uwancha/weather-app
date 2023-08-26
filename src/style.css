@@ -75,6 +75,10 @@ h1 {
     align-self: center;
 }
 
+#error-message {
+    align-self: center;
+}
+
 .search {
     align-self: center;
 }
