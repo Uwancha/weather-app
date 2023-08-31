@@ -30,7 +30,7 @@ Before running the weather app, make sure you have the following prerequisites i
 
 Follow these steps to set up and run the weather app:
 
-1. Clone the repository: `git clone https://github.com/Uwancha/weather-app`
+1. Clone the repository: git clone.
 
 2. Navigate to the project directory: `cd weather-app`
 
